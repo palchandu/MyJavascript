@@ -1,4 +1,5 @@
 'use strict'
+'timer.js'
 class User{
 	
   // constructor(name1,name2){
