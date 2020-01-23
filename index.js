@@ -1,22 +1,30 @@
 'use strict'
-'timer.js'
-class User{
-	
-  // constructor(name1,name2){
-  //   this.fname=name1;
-  //   this.lname=name2;
-  // }
-	get name(){
-		return this._name;
+class Timer{
+	constructor(template){
+		this.templ=template;
 	}
-	set name(value){
-		this._name=value;
+	render(){
+		 let date = new Date();
+  
+      let hours = date.getHours();
+      if (hours < 10) hours = '0' + hours;
+  
+      let mins = date.getMinutes();
+      if (mins < 10) mins = '0' + mins;
+  
+      let secs = date.getSeconds();
+      if (secs < 10) secs = '0' + secs;
+  
+      let output = this.templ
+        .replace('h', hours)
+        .replace('m', mins)
+        .replace('s', secs);
+      console.log(output);
 	}
-  sayHi(){
-    return 'My Name is:-'+this.name;
-  }
+	startClock(){
+		this.render();
+		setInterval(this.render,1000);
+	}
 }
-//console.log(User.prototype.sayHi);
-let myObj=new User();
-myObj.name='Chandra Prakash Pal';
-console.log(myObj.sayHi());
+let clock = new Timer('h:m:s');
+clock.startClock();
